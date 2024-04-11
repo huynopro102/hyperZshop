@@ -1,0 +1,65 @@
+﻿@model IEnumerable<DoAnWeb.Model.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ProductName
+            </th>
+            <th>
+                ProductDescription
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+            Sale
+            </th>
+            <th>
+              ProductType
+            </th>
+            <th>
+               supplier
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @item.ProductName
+            </td>
+            <td>
+                 @item.ProductDescription
+            </td>
+            <td>
+                @item.Price
+            </td>
+            <td>
+                @item.Sale
+            </td>
+            <td>
+                    @item.IdproductTypeNavigation?.ProductTypeName
+            </td>
+            <td>
+                    @item.IdsupplierNavigation?.SupplierName
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Idproduct">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Idproduct">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Idproduct">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
